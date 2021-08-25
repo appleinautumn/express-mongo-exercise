@@ -8,6 +8,8 @@ const schema = new Schema({
   name: { type: String, required: true },
   password: { type: String, required: true },
   is_admin: { type: Boolean },
+  refresh_token: { type: String },
+  refresh_token_until: { type: Date },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 
