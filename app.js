@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const cors = require('cors')
 const express = require('express')
 const createError = require('http-errors')
@@ -9,7 +11,7 @@ app.use(express.urlencoded({ extended: false }))
 const router = require('./routes')
 app.use('/api', cors())
 
-app.use('/api', router)
+app.use('/api', userRouter)
 
 const mongoose = require('mongoose')
 
