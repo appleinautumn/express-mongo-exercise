@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }))
 const router = require('./routes')
 app.use('/api', cors())
 
-app.use('/api', userRouter)
+app.use('/api', router)
 
 const mongoose = require('mongoose')
 
