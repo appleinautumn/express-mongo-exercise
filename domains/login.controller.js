@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const createError = require('http-errors')
 const jwt = require('jsonwebtoken')
 const { DateTime } = require('luxon')
+const { nanoid } = require('nanoid')
 
 const User = require('./user.model')
 
@@ -23,6 +24,11 @@ exports.login = async (req, res, next) => {
     if (!validPassword) {
       return next(createError(401, 'Invalid credentials.'))
     }
+
+    // generate new refresh token
+    user.refresh_token = nanoid(10)
+    user.refresh_token_until = DateTime.local().plus({ days: 30 })
+    user.save()
 
     const token = jwt.sign({
       sub: user._id,
