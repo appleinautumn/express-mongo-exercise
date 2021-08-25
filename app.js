@@ -1,3 +1,4 @@
+const cors = require('cors')
 const express = require('express')
 const createError = require('http-errors')
 
@@ -5,9 +6,10 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-const indexRouter = require('./routes')
+const router = require('./routes')
+app.use('/api', cors())
 
-app.use('/', indexRouter)
+app.use('/api', router)
 
 const mongoose = require('mongoose')
 
