@@ -1,11 +1,21 @@
 {
-  "name": "sejutacita",
+  "name": "sejutacitatest",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "devstart": "nodemon server.js"
   },
   "author": "firdaus adi putra",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-errors": "^1.7.2",
+    "mongoose": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
