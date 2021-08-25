@@ -39,6 +39,12 @@ exports.createUser = async (req, res, next) => {
   try {
     const { username, name, is_admin, password } = req.body
 
+    const count = await User.countDocuments({ username: username })
+
+    if (count > 0) {
+      throw (createError(400, 'Username exists'))
+    }
+
     // hash password
     const hash = await bcrypt.hash(password, 12)
 
