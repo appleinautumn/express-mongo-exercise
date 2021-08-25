@@ -9,6 +9,14 @@ const indexRouter = require('./routes')
 
 app.use('/', indexRouter)
 
+const mongoose = require('mongoose')
+
+const mongoDB = 'mongodb://127.0.0.1/sejutacita'
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
+
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
 //  error handler
 app.use(function(err, req, res, next) {
   res.status(err.status || 500)
