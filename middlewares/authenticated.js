@@ -16,6 +16,7 @@ exports.authenticated = async (req, res, next) => {
       req.user = {
         id: decoded.id,
         username: decoded.username,
+        is_admin: decoded.is_admin,
       }
 
       return next()
@@ -24,4 +25,11 @@ exports.authenticated = async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+}
+
+exports.isAdmin = (req, res, next) => {
+  if (req.user.is_admin) {
+    return next()
+  }
+  throw createError(403, 'Forbidden.')
 }
