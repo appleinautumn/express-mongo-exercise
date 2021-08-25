@@ -87,3 +87,22 @@ exports.updateUser = async (req, res, next) => {
     next(e)
   }
 }
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params
+
+    const user = await User.findByIdAndRemove(id);
+
+    if (!user) {
+      throw (createError(404))
+    }
+
+    res.json({
+      data: user,
+    })
+
+  } catch (e) {
+    next(e)
+  }
+}
