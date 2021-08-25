@@ -13,6 +13,8 @@ Credentials:
 | boss@test.com     | boss      | admin   |
 | alibaba@test.com  | alibaba   | user    |
 
+Flowchart of the use cases: https://whimsical.com/sejutacitatest-EsJNQMbPuHHxou7oxve1kc
+
 API documentation: https://documenter.getpostman.com/view/3021947
 
 ### Running on your machine
