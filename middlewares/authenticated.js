@@ -13,17 +13,17 @@ exports.authenticated = async (req, res, next) => {
       if (err) {
         return next(createError(401, 'Failed to authenticate token.'))
       }
+
       req.user = {
-        id: decoded.id,
-        username: decoded.username,
+        id: decoded.sub,
         is_admin: decoded.is_admin,
       }
 
       return next()
     })
 
-  } catch (error) {
-    next(error)
+  } catch (e) {
+    next(e)
   }
 }
 
