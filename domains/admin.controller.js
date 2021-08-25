@@ -47,6 +47,8 @@ exports.createUser = async (req, res, next) => {
       name,
       is_admin,
       password: hash,
+      refresh_token: null,
+      refresh_token_until: null,
     })
 
     res.json({
@@ -62,6 +64,12 @@ exports.updateUser = async (req, res, next) => {
   try {
     const { id } = req.params
     const { username, name, is_admin, password } = req.body
+
+    const count = await User.countDocuments({ username: username })
+
+    if (count > 0) {
+      throw (createError(400, 'Username exists'))
+    }
 
     // hash password
     const hash = await bcrypt.hash(password, 12)
