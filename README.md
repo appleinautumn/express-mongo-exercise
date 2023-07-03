@@ -1,5 +1,7 @@
 # Express Mongo Exercise
 
+This service is to demonstrate a REST service with Express and MongoDB. Authentication with JWT and refresh token.
+
 Features:
 
 - Admin can list, create, update, delete users.
