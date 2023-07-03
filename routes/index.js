@@ -32,6 +32,7 @@ router.get('/v1/profile', authenticated, (req, res, next) =>
 router.post('/v1/refresh-token', (req, res, next) =>
   loginController.refreshToken(req, res, next)
 );
+
 router.post('/v1/login', (req, res, next) =>
   loginController.login(req, res, next)
 );
