@@ -1,38 +1,79 @@
-# sejutacitatest microservice
+# Express Mongo Exercise
 
 Features:
-* Admin can list, create, update, delete users.
-* User can get their profile.
-* User can login.
-* User can refresh token.
 
-Tested on node 16, mongo 4.2.8 locally, and Mongo Atlas.
+- Admin can list, create, update, delete users.
+- User can get their profile.
+- User can login.
+- User can refresh token.
+
 Credentials:
-| Username          | Password  | Role    |
+| Username | Password | Role |
 |:-----------------:|:---------:|:-------:|
-| boss@test.com     | boss      | admin   |
-| alibaba@test.com  | alibaba   | user    |
+| boss@test.com | boss | admin |
+| alibaba@test.com | alibaba | user |
 
 Flowchart of the use cases: https://whimsical.com/sejutacitatest-EsJNQMbPuHHxou7oxve1kc
 
 API documentation: https://documenter.getpostman.com/view/3021947/TzzGGDQh
 
-### Running on your machine
+## Requirements
 
-In the main root directory, run:
+This project is developed with:
+
+- Node 18
+- MongoDB 6.0
+
+## Installation
+
+Clone the project
 
 ```bash
-node app.js
+git clone git@github.com:appleinautumn/express-mongo-exercise.git
 ```
 
-### Running on Docker
+Go to the project directory
 
-First build the image:
 ```bash
-docker build -t sejutacitatest-microservice .
+cd express-mongo-exercise
 ```
 
-When ready, run it:
+This service contains a `.env.example` file that defines environment variables you need to set. Copy and set the variables to a new `.env` file.
+
 ```bash
-docker run -d --rm -p 3000:3000 --env-file=.env sejutacitatest-microservice
+cp .env.example .env
+```
+
+Start the app
+
+```bash
+npm run dev
+```
+
+## Database
+
+Create a MongoDB database. And then get the seed data from `data` directory. And import it with the following command.
+
+```
+mongoimport --db=<database_name> --collection=users --type=json --file=users.json
+```
+
+## Deployment
+
+### Without Docker
+
+Follow the Installation instruction above
+
+### With Docker
+
+Build the image
+
+```bash
+docker build -t express-mongo-exercise .
+```
+
+Run the container
+
+```bash
+docker run -d --name express-mongo-exercise1 -p 3001:3000 --network=host --env-file=.env express-mongo-exercise
 ```
