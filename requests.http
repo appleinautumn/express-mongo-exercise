@@ -1,0 +1,98 @@
+### Login as user
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "username":"alibaba@test.com",
+    "password":"alibaba"
+}
+
+### See profile
+GET http://localhost:3000/api/v1/profile
+Content-Type: 'application/json'
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGEyYTM3M2VkNDM4NzhhZTMxZmIxMjMiLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTY4ODQwMzgxNCwiZXhwIjoxNjg5MDA4NjE0fQ._E0sRv4bN8WWoc9vsP8wlXQpDvthcdrGxc2_iam6Gvs
+
+# {
+#   "data": {
+#     "_id": "64a2a373ed43878ae31fb0bd",
+#     "username": "alibaba@test.com",
+#     "password": "$2a$12$/zKbWxxizLBOX.E94znyd..CjS9ECiPeUBEqZJ9VBGctJAUOK8gA6",
+#     "role": "user",
+#     "name": "alibaba",
+#     "created_at": "2023-07-03T15:43:43.595Z",
+#     "refresh_token": "823e2284-763e-453f-98d5-ce443b5d9f08",
+#     "refresh_token_until": "2023-08-02T15:45:25.874Z",
+#     "updated_at": "2023-07-03T15:43:43.595Z"
+#   }
+# }
+
+
+### Refresh token
+POST http://localhost:3000/api/v1/refresh-token
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGEyYTM3M2VkNDM4NzhhZTMxZmIxMjMiLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTY4ODQwMzgxNCwiZXhwIjoxNjg5MDA4NjE0fQ._E0sRv4bN8WWoc9vsP8wlXQpDvthcdrGxc2_iam6Gvs
+
+{
+    "refresh_token":"1106a9fd-9583-4505-b969-c9f8711e557f"
+}
+
+
+### Login as admin
+POST http://localhost:3000/api/v1/login
+Content-Type: application/json
+
+{
+    "username":"boss@test.com",
+    "password":"boss"
+}
+
+### As Admin, list all users
+GET http://localhost:3000/api/admin/v1/users
+Content-Type: 'application/json'
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGEyYTM0M2VkNDM4NzhhZTMxZmIwYTUiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjg4Mzk5Mjg4LCJleHAiOjE2ODkwMDQwODh9.fAKs6-TF9Cb8m0w7zwj5-QY6CgvfQd5BwNgO5xyncx0
+# {
+#   "data": [
+#     {
+#       "_id": "64a2a343ed43878ae31fb0a5",
+#       "username": "boss@test.com",
+#       "password": "$2a$12$IyPVaxssAy6LHebVTM8dVeBZLKAJiIIWyR.2oyJslk7zqGL8Hxf1a",
+#       "role": "admin",
+#       "name": "boss",
+#       "created_at": "2023-07-03T15:43:51.339Z",
+#       "refresh_token": "f044851a-e69e-4d5d-8fd2-6ef1bdcc2e89",
+#       "refresh_token_until": "2023-08-02T15:48:08.803Z",
+#       "updated_at": "2023-07-03T15:43:51.339Z",
+#       "is_admin": true
+#     },
+#     {
+#       "_id": "64a2a373ed43878ae31fb0bd",
+#       "username": "alibaba@test.com",
+#       "password": "$2a$12$/zKbWxxizLBOX.E94znyd..CjS9ECiPeUBEqZJ9VBGctJAUOK8gA6",
+#       "role": "user",
+#       "name": "alibaba",
+#       "created_at": "2023-07-03T15:43:43.595Z",
+#       "refresh_token": "823e2284-763e-453f-98d5-ce443b5d9f08",
+#       "refresh_token_until": "2023-08-02T15:45:25.874Z",
+#       "updated_at": "2023-07-03T15:43:43.595Z"
+#     }
+#   ]
+# }
+
+### As Admin, get one users
+GET http://localhost:3000/api/admin/v1/users/64a2a343ed43878ae31fb123
+Content-Type: 'application/json'
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGEyYTM0M2VkNDM4NzhhZTMxZmIwYTUiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjg4Mzk5Mjg4LCJleHAiOjE2ODkwMDQwODh9.fAKs6-TF9Cb8m0w7zwj5-QY6CgvfQd5BwNgO5xyncx0
+# {
+#   "data": {
+#     "_id": "64a2a343ed43878ae31fb0a5",
+#     "username": "boss@test.com",
+#     "password": "$2a$12$IyPVaxssAy6LHebVTM8dVeBZLKAJiIIWyR.2oyJslk7zqGL8Hxf1a",
+#     "role": "admin",
+#     "name": "boss",
+#     "created_at": "2023-07-03T15:43:51.339Z",
+#     "refresh_token": "f044851a-e69e-4d5d-8fd2-6ef1bdcc2e89",
+#     "refresh_token_until": "2023-08-02T15:48:08.803Z",
+#     "updated_at": "2023-07-03T15:43:51.339Z",
+#     "is_admin": true
+#   }
+# }
