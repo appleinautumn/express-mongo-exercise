@@ -17,8 +17,6 @@ Credentials:
 
 Flowchart of the use cases: https://whimsical.com/sejutacitatest-EsJNQMbPuHHxou7oxve1kc
 
-API documentation: https://documenter.getpostman.com/view/3021947/TzzGGDQh
-
 ## Requirements
 
 This project is developed with:
