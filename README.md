@@ -23,8 +23,8 @@ API documentation: https://documenter.getpostman.com/view/3021947/TzzGGDQh
 
 This project is developed with:
 
-- Node 18
-- MongoDB 6.0
+- Node 22
+- MongoDB 8.0
 
 ## Installation
 
@@ -54,10 +54,10 @@ npm run dev
 
 ## Database
 
-Create a MongoDB database. And then get the seed data from `data` directory. And import it with the following command.
+Create a MongoDB database. To import the seed data from `data` directory, go to project root directory and run:
 
-```
-mongoimport --db=<database_name> --collection=users --type=json --file=users.json
+```bash
+mongoimport --db=<database_name> --collection=users --type=json --file=data/users.json
 ```
 
 ## Deployment
