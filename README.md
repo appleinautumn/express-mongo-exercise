@@ -95,13 +95,26 @@ mongoimport --db=express_mongo_exercise --collection=users --type=json --file=da
 
 ## Testing
 
-To run tests (when implemented):
+The project uses Jest for testing with the following test suites:
+
+- Unit tests for middleware functions
+- Integration tests for API endpoints
+- Authentication tests
+
+Run the tests with:
 
 ```bash
+# Run all tests
 npm test
+
+# Run tests in watch mode (for development)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
 ```
 
-Currently, the test suite is not implemented. Tests will be added in future updates.
+Test coverage report will be generated in the `coverage` directory.
 
 ## Project Structure
 
