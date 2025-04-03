@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt');
-const createError = require('http-errors');
-const jwt = require('jsonwebtoken');
-const { DateTime } = require('luxon');
-const { v4: uuidv4 } = require('uuid');
+const bcrypt = require("bcrypt");
+const createError = require("http-errors");
+const jwt = require("jsonwebtoken");
+const { DateTime } = require("luxon");
+const { v4: uuidv4 } = require("uuid");
 
-const User = require('./user.model');
+const User = require("./user.model");
 
 exports.login = async (req, res, next) => {
   try {
@@ -15,14 +15,14 @@ exports.login = async (req, res, next) => {
     try {
       user = await User.findOne({ username }).orFail();
     } catch (e) {
-      throw createError(404);
+      return next(createError(401, "Invalid credentials."));
     }
 
     // check password
     const validPassword = await validatePassword(password, user.password);
 
     if (!validPassword) {
-      return next(createError(401, 'Invalid credentials.'));
+      return next(createError(401, "Invalid credentials."));
     }
 
     // generate new refresh token
@@ -58,7 +58,7 @@ exports.refreshToken = async (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      throw createError(401, 'Invalid Token.');
+      throw createError(401, "Invalid Token.");
     }
 
     // decode jwt while ignoring expiration
@@ -75,17 +75,17 @@ exports.refreshToken = async (req, res, next) => {
 
     // if refresh token does not exist
     if (!user.refresh_token) {
-      throw createError(401, 'Invalid Refresh Token.');
+      throw createError(401, "Invalid Refresh Token.");
     }
 
     // if refresh token is not the same with the stored one
     if (user.refresh_token !== refresh_token) {
-      throw createError(401, 'Invalid Refresh Token.');
+      throw createError(401, "Invalid Refresh Token.");
     }
 
     // if stored refresh token has expired
     if (isRefreshTokenExpired(user.refresh_token_until)) {
-      throw createError(401, 'Expired Refresh Token.');
+      throw createError(401, "Expired Refresh Token.");
     }
 
     // create access token
@@ -117,9 +117,9 @@ function validatePassword(plainPassword, hash) {
 function decodeTokenIgnoringExpiration(authorizationHeaderString) {
   try {
     // get token
-    const token = authorizationHeaderString.split(' ')[1];
+    const token = authorizationHeaderString.split(" ")[1];
     if (!token) {
-      throw createError(401, 'Invalid token.');
+      throw createError(401, "Invalid token.");
     }
 
     return jwt.verify(token, process.env.JWT_SECRET, {
