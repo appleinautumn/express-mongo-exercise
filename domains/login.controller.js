@@ -30,7 +30,7 @@ exports.login = async (req, res, next) => {
     user.refresh_token_until = DateTime.local().plus({ days: 30 });
     user.save();
 
-    const token = jwt.sign(
+    const access_token = jwt.sign(
       {
         sub: user._id,
         is_admin: user.is_admin,
@@ -43,7 +43,8 @@ exports.login = async (req, res, next) => {
 
     res.json({
       data: {
-        token,
+        access_token,
+        refresh_token: user.refresh_token,
       },
     });
   } catch (e) {
@@ -89,7 +90,7 @@ exports.refreshToken = async (req, res, next) => {
     }
 
     // create access token
-    const token = jwt.sign(
+    const access_token = jwt.sign(
       {
         id: user._id,
         is_admin: user.is_admin,
@@ -102,7 +103,7 @@ exports.refreshToken = async (req, res, next) => {
 
     res.json({
       data: {
-        token,
+        access_token,
       },
     });
   } catch (e) {
