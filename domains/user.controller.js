@@ -5,8 +5,6 @@ const User = require('./user.model')
 
 exports.getProfile = async (req, res, next) => {
   try {
-    const { id } = req.params
-
     let user
     try {
       user = await User.findById(req.user.id).orFail()

@@ -71,7 +71,7 @@ exports.refreshToken = async (req, res, next) => {
     try {
       user = await User.findById(userId).orFail();
     } catch (e) {
-      throw createError(404);
+      throw createError(401, "Invalid Token.");
     }
 
     // if refresh token does not exist
@@ -92,7 +92,7 @@ exports.refreshToken = async (req, res, next) => {
     // create access token
     const access_token = jwt.sign(
       {
-        id: user._id,
+        sub: user._id,
         is_admin: user.is_admin,
       },
       process.env.JWT_SECRET,
