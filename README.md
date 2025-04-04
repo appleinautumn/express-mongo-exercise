@@ -107,6 +107,11 @@ Run the tests with:
 # Run all tests
 npm test
 
+# Run specific test files
+npm test -- --testPathPattern=integration/auth.test.js
+npm test -- --testPathPattern=integration/admin.test.js
+npm test -- --testPathPattern=unit/authenticated.test.js
+
 # Run tests in watch mode (for development)
 npm run test:watch
 
@@ -218,8 +223,7 @@ Response:
 ```json
 {
   "data": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refresh_token": "new-refresh-token-uuid"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
   }
 }
 ```
@@ -396,7 +400,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 3. **API Request Errors**
    - 400 Bad Request: Check your request body format
-   - 401 Unauthorized: Make sure you're including the Authorization header
+   - 401 Unauthorized: Make sure you're including the Authorization header with valid token or using correct credentials
    - 403 Forbidden: Verify you have permission for the requested resource
    - 404 Not Found: Ensure the resource exists and the URL is correct
    - 500 Server Error: Check server logs for more information
